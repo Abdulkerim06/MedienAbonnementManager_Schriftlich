@@ -1,33 +1,74 @@
 \section{Angular}
-\subsection{Einordnung und Funktionsweise}
-\subsection{Single-Page-Application-Konzept}
+Angular wurde als zentrales Frontend-Framework für die Umsetzung der Webanwendung eingesetzt. \cite{angular_docs} 
+Ziel war die Entwicklung einer strukturierten, wartbaren und erweiterbaren Benutzeroberfläche, die eine zentrale Verwaltung von Mediatheken-Abonnements ermöglicht.
+Durch den komponentenbasierten Aufbau eignet sich Angular besonders für komplexe Anwendungen mit klar getrennten Funktionsbereichen \cite{angular_architecture}.
+
+
+\subsection{Rolle von Angular innerhalb der Anwendung}
+Angular übernimmt die vollständige Darstellung und Interaktion der Benutzeroberfläche.
+Sämtliche Funktionen zur Verwaltung von Abonnements, zur Anzeige von Laufzeiten sowie zur Darstellung der Verfügbarkeit von Filmen und Serien werden im Frontend realisiert.
+Die Trennung von Frontend und Backend ermöglicht eine klare Verantwortungsaufteilung zwischen Präsentations- und Geschäftslogik.
+
+\subsection{Architektur als Single-Page-Application}
+Die Anwendung wurde als Single-Page-Application (SPA) umgesetzt, bei der Inhalte nach dem initialen Laden dynamisch aktualisiert werden, ohne dass ein vollständiger Seitenreload erforderlich ist \cite{mdn_spa}.
+Dieses Konzept verbessert die Benutzererfahrung erheblich, da Navigationsvorgänge zwischen verschiedenen Bereichen verzögerungsfrei erfolgen.
+
+Für eine Abo-Verwaltungsplattform ist dieses Verhalten besonders relevant, da häufig zwischen unterschiedlichen Ansichten gewechselt wird, um Laufzeiten zu vergleichen oder Inhalte zu prüfen. 
+
 \subsection{Begründung der Wahl von Angular gegenüber React}
-\subsection{Komponenten, Data Binding und Services}
+Die Entscheidung für Angular fiel aufgrund des ganzheitlichen Framework-Ansatzes.
+Angular stellt im Gegensatz zu React ein vollständiges Framework bereit, das unter anderem Routing, Formularverarbeitung und HTTP-Kommunikation standartmäßig integriert \cite{freeman_angular}.
+Dies ermöglicht eine einheitliche Projektstruktur und erleichtert die langfristige Wartung der Anwendung. 
+
+\subsection{Komponentenstruktur der Abo-Verwaltung}
+Die Anwendung ist in logisch getrennte Komponenten unterteilt. Zentrale Komponenten sind unter anderem:
+
+\begin{itemize}
+    \item Übersicht der aktiven Abonnements
+    \item Detailansicht einzelner Abos mit Laufzeitinformationen
+    \item Ansicht zur Anzeige von Filmen und deren Streaming-Anbietern
+    \item Benutzer- und Kontoverwaltung
+\end{itemize}
+
+Diese Struktur unterstützt eine klare Trennung der Verantwortlichkeiten und erleichtert zukünftige Erweiterungen der Anwendung.
+
+\subsection{Data Binding und Services zur Zustandsverwaltung}
+Angular stellt mit Data Binding und Services bewährte Mechanismen zur Verwaltung des Anwendungszustands bereit \cite{angular_architecture}.
+Benutzereingaben werden direkt mit dem Datenmodell verknüpft, wodurch Änderungen unmittelbar in der Benutzeroberfläche sichtbar werden.
+
+Die Kommunikation mit dem Backend erfolgt über dedizierte Services, die sämtliche HTTP-Anfragen kapseln und eine konsistente Datenbasis sicherstellen.
+
 
 \section{Quarkus}
-\subsection{Grundlagen}
-\subsection{Vorteile im Kontext dieses Projekts}
-\subsection{Implementierung der API}
+\subsection{Grundlagen des Frameworks}
+\subsection{Vorteile im Kontext der Abo-Verwaltung}
+\subsection{Aufbau der REST-Schnittstellen}
+\subsection{Kommunikation mit externen APIs}
 
 \section{Keycloak}
-\subsection{Grundlagen}
-\subsection{Ablauf des Login-Prozesses}
+\subsection{Grundlagen der Authentifizierung und Autorisierung}
+\subsection{Ablauf des Login- und Token-Prozesses}
 \subsection{Rollen- und Benutzerverwaltung}
+\subsection{Sicherheitsaspekte und Datenschutz}
 
 \section{PostgreSQL}
-\subsection{Datenhaltung und Struktur}
-\subsection{Vorteile relationaler Datenbanken}
-\subsection{Mögliche Alternativen}
+\subsection{Datenmodell für Abonnements und Mediatheken}
+\subsection{Strukturierung der relationalen Tabellen}
+\subsection{Vorteile relationaler Datenbanken für dieses Projekt}
+\subsection{Evaluierung möglicher Alternativen}
 
 \section{Docker}
-\subsection{Grundlagen und Containerisierungskonzept}
-\subsection{Einsatz im Projekt}
+\subsection{Grundlagen der Containerisierung}
+\subsection{Einsatz von Docker im Entwicklungsprozess}
+\subsection{Vereinheitlichung der Entwicklungsumgebung}
 
 \section{Tailwind CSS}
 \subsection{Utility-First-Ansatz}
-\subsection{Integration in Angular}
+\subsection{Gestaltung der Benutzeroberfläche}
+\subsection{Integration von Tailwind CSS in Angular}
+\subsection{Beitrag zur Benutzerfreundlichkeit}
 
 \section{GitHub}
-\subsection{Versionsverwaltung}
-\subsection{Branching-Strategie}
-\subsection{Projektorganisation}
+\subsection{Versionsverwaltung im Projekt}
+\subsection{Branching-Strategie und Zusammenarbeit}
+\subsection{Nachvollziehbarkeit der Entwicklung}
