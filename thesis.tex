@@ -46,7 +46,6 @@
 \pagenumbering{Roman}
 \newpage
 \input{oath}
-\input{./sections/abstract}
 
 \pagestyle{plain}
 
@@ -65,30 +64,50 @@
 \pagenumbering{arabic}
 \pagestyle{scrheadings}
 
+% Themen
+
+% Themen
+
 \begin{spacing}{1}
 \chapter{Einleitung}\label{chapter:introduction}
 \end{spacing}
 \input{./sections/introduction}
 
 \begin{spacing}{1}
-\chapter{Umfeldanalyse}
+\chapter{Problemstellungen}\label{chapter:problems}
 \end{spacing}
-\input{./sections/related_work}
+\input{./sections/problems}
 
 \begin{spacing}{1}
-\chapter{Technologien}\label{chapter:tech}
+\chapter{Technologische Grundlagen}\label{chapter:technologies}
 \end{spacing}
 \input{./sections/technologies}
 
 \begin{spacing}{1}
-\chapter{Umsetzung}\label{chapter:implementation}
+\chapter{APIs im Projekt}\label{chapter:apis}
 \end{spacing}
-\input{./sections/implementation}
+\input{./sections/apis}
 
 \begin{spacing}{1}
-\chapter{Zusammenfassung}
+\chapter{Architektur und Implementierung}\label{chapter:architecture}
+\end{spacing}
+\input{./sections/architecture}
+
+\begin{spacing}{1}
+\chapter{Projektdurchführung}\label{chapter:project}
+\end{spacing}
+\input{./sections/project_execution}
+
+\begin{spacing}{1}
+\chapter{Ergebnisse und Ausblick}\label{chapter:results}
+\end{spacing}
+\input{./sections/results}
+
+\begin{spacing}{1}
+\chapter{Zusammenfassung}\label{chapter:summary}
 \end{spacing}
 \input{./sections/summary}
+
 
 \newpage
 \pagenumbering{Roman}
@@ -117,7 +136,5 @@
 \listoftables
 \lstlistoflistings
 \appendix
-\addchap{Anhang}
-\input{./sections/appendix}
 \end{document}
 
