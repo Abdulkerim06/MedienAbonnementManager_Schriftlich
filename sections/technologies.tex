@@ -1,74 +1,59 @@
 \section{Angular}
-Angular wurde als zentrales Frontend-Framework für die Umsetzung der Webanwendung eingesetzt. \cite{angular_docs} 
-Ziel war die Entwicklung einer strukturierten, wartbaren und erweiterbaren Benutzeroberfläche, die eine zentrale Verwaltung von Mediatheken-Abonnements ermöglicht.
-Durch den komponentenbasierten Aufbau eignet sich Angular besonders für komplexe Anwendungen mit klar getrennten Funktionsbereichen \cite{angular_architecture}.
-
+Im Rahmen meines Projektteils lag der Schwerpunkt auf der Entwicklung des Frontends. Als technologische Grundlage wurde dafür Angular verwendet, da das Framework eine klare Struktur für moderne Webanwendungen bietet und zentrale Funktionen wie Routing, Komponentenarchitektur, Formularverarbeitung und HTTP-Kommunikation bereits integriert \cite{angular_overview,angular_routing,angular_forms}. Für die Umsetzung des MedienAbonnementManagers war Angular besonders geeignet, da mehrere zusammenhängende Oberflächenbereiche entwickelt werden mussten, die dennoch in einer einheitlichen Anwendung miteinander verbunden bleiben sollten.
 
 \subsection{Rolle von Angular innerhalb der Anwendung}
-Angular übernimmt die vollständige Darstellung und Interaktion der Benutzeroberfläche.
-Sämtliche Funktionen zur Verwaltung von Abonnements, zur Anzeige von Laufzeiten sowie zur Darstellung der Verfügbarkeit von Filmen und Serien werden im Frontend realisiert.
-Die Trennung von Frontend und Backend ermöglicht eine klare Verantwortungsaufteilung zwischen Präsentations- und Geschäftslogik.
+Angular übernimmt in der Anwendung die gesamte Darstellung und Interaktion der Benutzeroberfläche. Dazu zählen insbesondere die Startseite, die Filmsuche, die Detailansicht einzelner Filme, die Navigation innerhalb der Anwendung sowie die Oberfläche zur Verwaltung persönlicher Streaming-Abonnements. Der Fokus meines Projektteils lag darauf, diese Funktionen so umzusetzen, dass sie übersichtlich, wartbar und für Benutzer intuitiv bedienbar sind.
 
 \subsection{Architektur als Single-Page-Application}
-Die Anwendung wurde als Single-Page-Application (SPA) umgesetzt, bei der Inhalte nach dem initialen Laden dynamisch aktualisiert werden, ohne dass ein vollständiger Seitenreload erforderlich ist \cite{mdn_spa}.
-Dieses Konzept verbessert die Benutzererfahrung erheblich, da Navigationsvorgänge zwischen verschiedenen Bereichen verzögerungsfrei erfolgen.
-
-Für eine Abo-Verwaltungsplattform ist dieses Verhalten besonders relevant, da häufig zwischen unterschiedlichen Ansichten gewechselt wird, um Laufzeiten zu vergleichen oder Inhalte zu prüfen. 
+Das Frontend wurde als Single-Page-Application umgesetzt. Bei diesem Ansatz bleibt die Anwendung nach dem ersten Laden im Browser aktiv und Inhalte werden dynamisch aktualisiert, ohne dass bei jeder Aktion ein vollständiger Seitenneuaufbau erfolgen muss \cite{mdn_spa}. Diese Architektur verbessert die Benutzererfahrung deutlich, da Navigationsvorgänge zwischen Startseite, Filmsuche, Detailansicht und Providerverwaltung flüssig ablaufen. Gerade für eine interaktive Webanwendung mit mehreren Ansichten stellt dies einen wesentlichen Vorteil dar.
 
 \subsection{Begründung der Wahl von Angular gegenüber React}
-Die Entscheidung für Angular fiel aufgrund des ganzheitlichen Framework-Ansatzes.
-Angular stellt im Gegensatz zu React ein vollständiges Framework bereit, das unter anderem Routing, Formularverarbeitung und HTTP-Kommunikation standartmäßig integriert \cite{freeman_angular}.
-Dies ermöglicht eine einheitliche Projektstruktur und erleichtert die langfristige Wartung der Anwendung. 
+Für dieses Projekt wurde Angular gewählt, weil es ein vollständiges Framework mit klarer Struktur und fest integrierten Kernfunktionen darstellt \cite{angular_overview,freeman_angular}. Im Vergleich zu React bietet Angular bereits standardisierte Lösungen für Routing, Formulare und HTTP-Kommunikation. Für den Frontend-Teil der Diplomarbeit war dies besonders hilfreich, da dadurch eine einheitliche Entwicklung möglich war und weniger zusätzliche Bibliotheken benötigt wurden. Außerdem erleichtert Angular durch seinen komponentenbasierten Aufbau die langfristige Wartung und Erweiterung der Anwendung.
 
-\subsection{Komponentenstruktur der Abo-Verwaltung}
-Die Anwendung ist in logisch getrennte Komponenten unterteilt. Zentrale Komponenten sind unter anderem:
-
-\begin{itemize}
-    \item Übersicht der aktiven Abonnements
-    \item Detailansicht einzelner Abos mit Laufzeitinformationen
-    \item Ansicht zur Anzeige von Filmen und deren Streaming-Anbietern
-    \item Benutzer- und Kontoverwaltung
-\end{itemize}
-
-Diese Struktur unterstützt eine klare Trennung der Verantwortlichkeiten und erleichtert zukünftige Erweiterungen der Anwendung.
+\subsection{Komponentenstruktur der Anwendung}
+Die Benutzeroberfläche wurde in mehrere eigenständige Angular-Komponenten gegliedert. Dazu gehören unter anderem die Hauptseite, die Filmübersicht, die Detailansicht eines Films, die Providerverwaltung, die Navigationsleiste sowie die Ansichten für Login und Registrierung. Diese Aufteilung ermöglicht eine saubere Trennung einzelner Funktionsbereiche. Änderungen an einer Komponente können dadurch umgesetzt werden, ohne andere Bereiche der Anwendung unnötig zu beeinflussen.
 
 \subsection{Data Binding und Services zur Zustandsverwaltung}
-Angular stellt mit Data Binding und Services bewährte Mechanismen zur Verwaltung des Anwendungszustands bereit \cite{angular_architecture}.
-Benutzereingaben werden direkt mit dem Datenmodell verknüpft, wodurch Änderungen unmittelbar in der Benutzeroberfläche sichtbar werden.
-
-Die Kommunikation mit dem Backend erfolgt über dedizierte Services, die sämtliche HTTP-Anfragen kapseln und eine konsistente Datenbasis sicherstellen.
-
-
-\section{Quarkus}
-\subsection{Grundlagen des Frameworks}
-\subsection{Vorteile im Kontext der Abo-Verwaltung}
-\subsection{Aufbau der REST-Schnittstellen}
-\subsection{Kommunikation mit externen APIs}
+Ein wesentlicher Bestandteil der Frontend-Entwicklung war die Verknüpfung von Benutzereingaben mit den dargestellten Daten. Angular stellt dafür Mechanismen wie Data Binding und Formularunterstützung bereit \cite{angular_forms}. Im Projekt wurden außerdem eigene Services eingesetzt, um Datenzugriffe zu kapseln und die Kommunikation mit den bereitgestellten Schnittstellen zu organisieren. Dadurch bleibt die Oberflächenlogik übersichtlich und die einzelnen Komponenten konzentrieren sich auf Darstellung und Interaktion.
 
 \section{Keycloak}
-\subsection{Grundlagen der Authentifizierung und Autorisierung}
+Für die Anmeldung und Registrierung der Benutzer wurde im Frontend Keycloak eingebunden. Dadurch musste keine eigene Login-Oberfläche mit selbst implementierter Passwortlogik entwickelt werden. Stattdessen wurde eine etablierte Lösung für Authentifizierung verwendet, die das Frontend mit dem Anmeldesystem verbindet \cite{keycloak_docs,keycloak_home}. Aus Sicht meines Projektteils war vor allem die Einbindung in die Benutzeroberfläche und die Steuerung geschützter Frontend-Bereiche relevant.
+
+\subsection{Grundlagen der Authentifizierung aus Frontend-Sicht}
+Im Frontend dient die Authentifizierung dazu, zwischen öffentlichen und geschützten Bereichen der Anwendung zu unterscheiden. Öffentliche Inhalte wie die Filmübersicht können allgemein angezeigt werden, während persönliche Bereiche wie die Verwaltung eigener Abonnements nur angemeldeten Benutzern zugänglich sind. Das Frontend reagiert damit auf den Authentifizierungsstatus und passt Navigation sowie verfügbare Funktionen entsprechend an.
+
 \subsection{Ablauf des Login- und Token-Prozesses}
-\subsection{Rollen- und Benutzerverwaltung}
-\subsection{Sicherheitsaspekte und Datenschutz}
+Beim Login wird der Benutzer aus dem Frontend heraus an Keycloak weitergeleitet. Nach erfolgreicher Anmeldung kehrt er in die Anwendung zurück und kann geschützte Funktionen nutzen \cite{keycloak_docs}. Für das Frontend ist dabei entscheidend, dass der Benutzerstatus erkannt und für weitere Anfragen verwendet wird. Auf diese Weise können geschützte Ansichten nur dann geöffnet werden, wenn eine gültige Anmeldung vorliegt.
 
-\section{PostgreSQL}
-\subsection{Datenmodell für Abonnements und Mediatheken}
-\subsection{Strukturierung der relationalen Tabellen}
-\subsection{Vorteile relationaler Datenbanken für dieses Projekt}
-\subsection{Evaluierung möglicher Alternativen}
+\subsection{Rollen und Zugriff auf geschützte Bereiche}
+Neben der reinen Anmeldung spielt auch die Zugriffskontrolle auf bestimmte Ansichten eine Rolle. Im Frontend wird geprüft, ob ein Benutzer auf geschützte Bereiche wie die Providerverwaltung zugreifen darf. Dadurch kann die Navigation benutzerfreundlich gestaltet werden, indem nicht erlaubte Seiten entweder verborgen oder nur nach erfolgreicher Anmeldung erreichbar gemacht werden.
 
-\section{Docker}
-\subsection{Grundlagen der Containerisierung}
-\subsection{Einsatz von Docker im Entwicklungsprozess}
-\subsection{Vereinheitlichung der Entwicklungsumgebung}
+\subsection{Nutzen für Sicherheit und Benutzerfreundlichkeit}
+Die Verwendung von Keycloak verbessert sowohl die Sicherheit als auch die Benutzerfreundlichkeit. Da keine eigene Passwortverwaltung entwickelt werden musste, konnte das Risiko unsicherer Eigenimplementierungen reduziert werden. Gleichzeitig wirkt der Login-Prozess für Benutzer konsistent, da Registrierung, Anmeldung und Abmeldung zentral über ein spezialisiertes System gesteuert werden.
 
 \section{Tailwind CSS}
+Für die Gestaltung der Benutzeroberfläche wurde Tailwind CSS eingesetzt. Tailwind ist ein CSS-Framework, das nach dem Utility-First-Prinzip arbeitet und dadurch eine schnelle und flexible Entwicklung moderner Benutzeroberflächen ermöglicht \cite{tailwind_docs,tailwind_home}. Im Frontend des MedienAbonnementManagers wurde Tailwind genutzt, um Layout, Abstände, Farben, Formulare und Kartenansichten effizient zu gestalten.
+
 \subsection{Utility-First-Ansatz}
+Der Utility-First-Ansatz bedeutet, dass viele kleine CSS-Klassen direkt in den Templates verwendet werden, um konkrete Gestaltungseigenschaften festzulegen \cite{tailwind_docs}. Dazu zählen unter anderem Abstände, Größen, Farben, Rahmen oder Typografie. Für das Projekt hatte dies den Vorteil, dass Oberflächen schnell angepasst und konsistent gestaltet werden konnten, ohne für jede Änderung umfangreiche eigene CSS-Strukturen anlegen zu müssen.
+
 \subsection{Gestaltung der Benutzeroberfläche}
+Tailwind CSS wurde besonders für interaktive Bereiche wie die Providerverwaltung, Formulare, Suchfelder, Buttons und Kartenansichten eingesetzt. Dadurch konnte eine moderne und übersichtliche Oberfläche umgesetzt werden, die die verschiedenen Funktionsbereiche visuell voneinander trennt. Vor allem in der Abo-Verwaltung war eine klare Darstellung wichtig, damit Benutzer Anbieter, Status und Eingabefelder schnell erfassen können.
+
 \subsection{Integration von Tailwind CSS in Angular}
+Die Einbindung von Tailwind CSS in das Angular-Projekt erfolgte direkt über die Konfiguration des Frontends. Dadurch standen die Utility-Klassen in allen Komponenten zur Verfügung. Diese enge Integration war für die praktische Frontend-Entwicklung besonders hilfreich, da Layout und Funktionalität parallel umgesetzt werden konnten.
+
 \subsection{Beitrag zur Benutzerfreundlichkeit}
+Ein zentrales Ziel des Frontends war eine intuitive und ansprechende Bedienung. Die Gestaltung mit Tailwind CSS unterstützt dieses Ziel, indem wichtige Elemente klar hervorgehoben und logisch angeordnet werden. Eine gut strukturierte Oberfläche trägt wesentlich dazu bei, dass Benutzer die Anwendung leichter verstehen und effizient verwenden können.
 
 \section{GitHub}
-\subsection{Versionsverwaltung im Projekt}
-\subsection{Branching-Strategie und Zusammenarbeit}
-\subsection{Nachvollziehbarkeit der Entwicklung}
+GitHub wurde im Projekt als Plattform für Versionsverwaltung und Zusammenarbeit genutzt. Für meinen Frontend-Teil war dies insbesondere wichtig, um Änderungen an Komponenten, Styles und Routing nachvollziehbar zu dokumentieren und in einem strukturierten Entwicklungsprozess festzuhalten \cite{github_workflows}. Dadurch konnten einzelne Entwicklungsschritte sauber voneinander getrennt und schrittweise weiterentwickelt werden.
+
+\subsection{Versionsverwaltung im Frontend}
+Die Frontend-Entwicklung umfasste mehrere aufeinander aufbauende Änderungen, beispielsweise an der Filmsuche, an der Navigationsstruktur, an der Provideransicht und am visuellen Design. Durch die Versionsverwaltung konnten diese Schritte einzeln dokumentiert und bei Bedarf auf frühere Stände zurückgeführt werden. Dies erhöhte die Nachvollziehbarkeit und reduzierte das Risiko, funktionierende Zwischenstände zu verlieren.
+
+\subsection{Branching und strukturierte Weiterentwicklung}
+Im Projekt wurden verschiedene Branches verwendet, um neue Änderungen getrennt vom Hauptstand weiterzuentwickeln. Für die Frontend-Arbeit war dies besonders hilfreich, wenn größere Überarbeitungen an der Benutzeroberfläche oder an der Logik einzelner Ansichten vorgenommen wurden. So konnten neue Ideen und Anpassungen zunächst isoliert entwickelt werden, bevor sie in einen stabileren Stand übernommen wurden.
+
+\subsection{Nachvollziehbarkeit der eigenen Arbeit}
+Die Commit-Historie dokumentiert die schrittweise Weiterentwicklung des Frontends, etwa bei der Überarbeitung der Filmsuche, beim Ausbau der Trending-Ansichten oder bei der Verbesserung der Benutzeroberfläche der Abo-Verwaltung. Für die Diplomarbeit ist dies hilfreich, da der eigene Beitrag am Frontend dadurch nachvollziehbar beschrieben werden kann.

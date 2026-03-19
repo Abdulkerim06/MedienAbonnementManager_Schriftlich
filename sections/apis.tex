@@ -1,11 +1,21 @@
 \section{Gesamtarchitektur der Anwendung}
-Text ... 
+Die Gesamtarchitektur der Anwendung folgt einem klar getrennten Aufbau zwischen Benutzeroberfläche und serverseitiger Verarbeitung. Der Schwerpunkt meines Projektteils lag auf dem Frontend, das mit Angular als Single-Page-Application umgesetzt wurde. Das Frontend übernimmt die Darstellung der Inhalte, die Navigation zwischen den Ansichten sowie die Interaktion mit den Benutzern. Die eigentliche Datenverarbeitung erfolgt über bereitgestellte REST-Schnittstellen, die vom Frontend angesprochen werden. Durch diese Trennung konnte die Benutzeroberfläche unabhängig von der serverseitigen Implementierung entwickelt und erweitert werden.
 
 \section{Kommunikation zwischen Frontend und Backend}
-Text ... 
+Die Kommunikation zwischen Frontend und Backend erfolgt über HTTP-basierte REST-Aufrufe. Im Frontend wurden dafür eigene Angular-Services verwendet, um Daten strukturiert von den Schnittstellen zu laden und an die Komponenten weiterzugeben \cite{angular_forms}. Dieses Vorgehen hat den Vorteil, dass die Komponenten selbst möglichst wenig Logik für Datenzugriffe enthalten und sich stärker auf Darstellung und Interaktion konzentrieren können.
+
+Im Projekt wurden insbesondere Services für Filmdaten, Providerdaten und die Authentifizierungsanbindung eingesetzt. Dadurch konnte die Anwendung Suchanfragen, Detailansichten und benutzerspezifische Inhalte in einer einheitlichen Struktur verarbeiten. Für das Frontend war dabei vor allem wichtig, dass externe Daten zuverlässig geladen, zwischengespeichert und in geeigneter Form in der Oberfläche dargestellt werden.
+
+Bei benutzerspezifischen Daten reicht ein normaler HTTP-Aufruf jedoch nicht aus. Solche Daten können nur dann vom Backend geladen werden, wenn das Frontend ein gültiges Bearer-Token mitsendet. Dieses Token wird nach erfolgreicher Anmeldung über Keycloak bereitgestellt und bei geschützten Anfragen im Authorization-Header übertragen. Auf diese Weise kann das Backend prüfen, ob der Benutzer authentifiziert ist und Zugriff auf die angeforderten Daten besitzt \cite{keycloak_docs,keycloak_home}.
 
 \section{API-Integration externer Movie-Datenbanken}
-Text ... 
+Ein wichtiger Bestandteil der Anwendung ist die Darstellung von Filminformationen und Streaming-Anbietern. Aus Sicht des Frontends bestand die Aufgabe darin, diese Informationen benutzerfreundlich aufzubereiten und in unterschiedlichen Ansichten darzustellen. Dazu gehören insbesondere die Filmübersicht, die Detailansicht einzelner Filme sowie die Anzeige verfügbarer Anbieter.
+
+Die Filmdaten werden über bereitgestellte Schnittstellen geladen und in Angular-Komponenten eingebunden. Für die Benutzeroberfläche war dabei entscheidend, dass Suchergebnisse übersichtlich dargestellt, Detailinformationen verständlich aufbereitet und Navigationswechsel zwischen Listen- und Detailansicht flüssig umgesetzt werden. Da die Anwendung als Single-Page-Application realisiert wurde, konnte dieser Wechsel ohne vollständigen Seitenneuaufbau erfolgen \cite{mdn_spa}.
 
 \section{Sicherheits- und Datenschutzkonzept}
-Text ... 
+Aus Frontend-Sicht spielt das Sicherheits- und Datenschutzkonzept vor allem bei der Zugriffskontrolle auf geschützte Bereiche eine Rolle. Öffentliche Inhalte der Anwendung können ohne Anmeldung aufgerufen werden, während persönliche Funktionen wie die Verwaltung eigener Streaming-Abonnements nur nach erfolgreicher Authentifizierung zugänglich sind. Für diesen Zweck wurde Keycloak in das Frontend integriert \cite{keycloak_docs,keycloak_home}.
+
+Ein wichtiger Bestandteil dieses Konzepts ist, dass personenbezogene oder benutzerspezifische Daten nicht öffentlich abrufbar sind. Das Backend stellt diese Informationen nur dann bereit, wenn bei der Anfrage ein gültiges Bearer-Token übertragen wird. Das Frontend übernimmt dabei die Aufgabe, den Authentifizierungsstatus zu verwalten und das Token bei geschützten Requests mitzuschicken. Dadurch wird sichergestellt, dass persönliche Inhalte nur autorisierten Benutzern angezeigt werden \cite{keycloak_docs}.
+
+Die Angular-Anwendung erkennt den Authentifizierungsstatus der Benutzer und steuert darauf basierend den Zugriff auf geschützte Routen. Dadurch wird sichergestellt, dass sensible benutzerspezifische Inhalte nicht ohne Anmeldung angezeigt werden. Gleichzeitig verbessert diese Struktur die Benutzerfreundlichkeit, da sich öffentliche und persönliche Bereiche klar voneinander trennen lassen. Die eigentliche Verwaltung von Zugangsdaten erfolgt dabei nicht im Frontend selbst, sondern über das externe Authentifizierungssystem.

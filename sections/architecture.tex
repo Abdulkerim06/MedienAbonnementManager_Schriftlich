@@ -1,14 +1,59 @@
 \section{Implementierung der Abo-Verwaltung}
-Text ...
+Ein wesentlicher Bestandteil meines Projektteils war die Umsetzung der Benutzeroberfläche zur Verwaltung persönlicher Streaming-Abonnements. Ziel war es, eine übersichtliche und einfach bedienbare Ansicht zu entwickeln, in der Benutzer ihre aktiven Anbieter verwalten und Änderungen direkt speichern können. Die technische Umsetzung erfolgte im Angular-Frontend mit einer eigenständigen Komponente für die Providerverwaltung sowie zugehörigen Services für die Kommunikation mit dem Backend \cite{angular_overview,angular_forms}.
+
+\subsection{Aufbau der Provider-Verwaltung}
+Die Provider-Verwaltung wurde als eigener geschützter Bereich innerhalb der Angular-Anwendung umgesetzt. Benutzer können dort Streaming-Anbieter laden, durchsuchen und auswählen. Zusätzlich ist erkennbar, welche Anbieter bereits im Profil gespeichert sind. Diese Struktur verbessert die Übersichtlichkeit und ermöglicht eine klare Trennung zwischen allgemeinen Filmfunktionen und persönlichen Abo-Daten.
+
+\subsection{Bearbeitung und Speicherung von Abonnements}
+In der Oberfläche können Benutzer Anbieter als aktiv markieren und zusätzliche Angaben wie Abrechnungszyklus und Datum der letzten Abbuchung festlegen. Diese Eingaben werden im Frontend verarbeitet und anschließend gesammelt an das Backend übermittelt. Die Verwendung von Formularlogik und Datenbindung in Angular erleichtert dabei die direkte Verknüpfung zwischen Eingabefeldern und angezeigten Daten \cite{angular_forms}. Dadurch konnten Änderungen in der Oberfläche unmittelbar sichtbar gemacht werden.
+
+\subsection{Filter- und Suchfunktionen in der Oberfläche}
+Damit die Verwaltung vieler Anbieter benutzerfreundlich bleibt, wurde die Oberfläche um Such- und Filterfunktionen ergänzt. Benutzer können nach Anbietern suchen oder sich nur bereits aktivierte Abonnements anzeigen lassen. Diese Interaktionsmöglichkeiten verbessern die Nutzbarkeit der Anwendung deutlich, da relevante Einträge schneller gefunden und bearbeitet werden können.
+
 \section{Darstellung von Laufzeiten und Kündigungszeitpunkten}
-Text ...
+Neben der Auswahl von Streaming-Anbietern war auch die Darstellung zeitlicher Informationen ein wichtiger Teil der Abo-Verwaltung. Aus Frontend-Sicht ging es dabei vor allem darum, Eingabemöglichkeiten für abrechnungsrelevante Daten bereitzustellen und diese verständlich in die Oberfläche einzubinden. Die Benutzer sollen dadurch ihre gespeicherten Abonnements besser nachvollziehen können.
+
+\subsection{Erfassung abrechnungsrelevanter Daten}
+Für jedes aktive Abonnement können im Frontend Informationen wie Abrechnungszyklus und Datum der letzten Abbuchung erfasst werden. Diese Werte werden in Formularfeldern dargestellt und vom Benutzer bearbeitet. Die Oberfläche unterstützt dadurch nicht nur die Auswahl eines Anbieters, sondern auch die strukturierte Verwaltung der wichtigsten Abo-Metadaten.
+
+\subsection{Grenzen des aktuellen Umsetzungsstandes}
+Im aktuellen Projektstand liegt der Schwerpunkt auf der Erfassung und Speicherung dieser Daten. Eine vollständige Logik zur Berechnung von Kündigungsfristen, Erinnerungen oder automatischen Benachrichtigungen wurde im Frontend noch nicht vollständig ausgebaut. Für die schriftliche Arbeit ist es daher sinnvoll, zwischen der bereits umgesetzten Datenerfassung und möglichen zukünftigen Erweiterungen zu unterscheiden.
+
 \section{Verknüpfung von Filmen mit Streaming-Anbieter}
-Text ...
+Ein zentraler Mehrwert der Anwendung besteht darin, dass Filmrecherche und Abo-Verwaltung in einer Oberfläche zusammengeführt werden. Im Frontend wurde dafür eine Benutzeroberfläche entwickelt, in der Benutzer Filme suchen, Trending-Inhalte ansehen und Detailinformationen zu einzelnen Filmen aufrufen können. Die Verknüpfung mit Streaming-Anbietern ermöglicht es, Filminformationen nicht isoliert, sondern im Zusammenhang mit den eigenen Abonnements zu betrachten.
+
+\subsection{Umsetzung der Filmsuche}
+Die Filmsuche wurde als eigener Bereich im Frontend umgesetzt. Benutzer können nach Filmtiteln suchen und erhalten eine Liste passender Ergebnisse, die dynamisch geladen und angezeigt werden. Da das Frontend als Single-Page-Application realisiert wurde, bleiben Suchanfragen und Seitenwechsel innerhalb derselben Anwendung und wirken dadurch deutlich flüssiger \cite{mdn_spa,angular_routing}.
+
+\subsection{Darstellung von Trending-Filmen}
+Zusätzlich zur klassischen Suche wurde eine Ansicht für Trending-Filme integriert. Dadurch können Benutzer aktuelle oder populäre Inhalte entdecken, ohne gezielt nach einem Titel suchen zu müssen. Diese Funktion erweitert die Anwendung um einen explorativen Aspekt und erhöht den praktischen Nutzen des Frontends.
+
+\subsection{Detailansicht einzelner Filme}
+Für einzelne Filme wurde eine eigene Detailansicht umgesetzt. Dort werden weiterführende Informationen wie Titel, Beschreibung, Erscheinungsjahr, Laufzeit, Genres und weitere Metadaten dargestellt. Die Aufbereitung dieser Daten im Frontend war wichtig, damit die Benutzer nicht nur Suchergebnisse sehen, sondern Inhalte auch genauer beurteilen können.
+
+\subsection{Verbindung zur Anbieteranzeige}
+Ein besonderer Fokus lag auf der Darstellung von Streaming-Anbietern im Zusammenhang mit Filminformationen. Dadurch kann die Anwendung anzeigen, auf welchen Plattformen ein Film verfügbar ist. Aus Sicht des Frontends bestand die Aufgabe vor allem darin, diese Informationen übersichtlich darzustellen und sinnvoll in die Filmansichten zu integrieren. Diese Verbindung zwischen Inhalt und Verfügbarkeit stellt den eigentlichen Kernnutzen des Projekts dar.
+
 \section{Account- und Passwortverwaltung}
-Text ...
-\subsection{Analyse bestehender Lösungen (Bitwarden, 1Password)}
-Text ...
+Die Benutzerverwaltung wurde im Frontend nicht als Eigenlösung umgesetzt, sondern über die Integration von Keycloak realisiert. Dadurch konnte auf eine eigene Passwortspeicherung verzichtet werden, während gleichzeitig ein professioneller und sicherer Anmeldeprozess in die Anwendung eingebunden wurde \cite{keycloak_docs,keycloak_home}. Für meinen Projektteil war vor allem relevant, wie sich Login, Registrierung und geschützte Routen in die Angular-Anwendung integrieren lassen.
+
+\subsection{Einbindung von Login und Registrierung}
+Im Frontend wurden Login- und Registrierungsfunktionen so eingebunden, dass Benutzer bei Bedarf an das Keycloak-System weitergeleitet werden. Nach erfolgreicher Anmeldung kehren sie in die Anwendung zurück und können geschützte Bereiche verwenden. Dadurch bleibt der Authentifizierungsprozess klar vom restlichen Frontend getrennt und dennoch benutzerfreundlich in die Anwendung eingebettet.
+
+\subsection{Geschützte Bereiche im Frontend}
+Bestimmte Bereiche, insbesondere die Verwaltung persönlicher Abonnements, sind nur für angemeldete Benutzer zugänglich. Das Frontend prüft dafür den Authentifizierungsstatus und steuert den Zugriff auf geschützte Routen. Dadurch wird verhindert, dass persönliche Funktionen ohne gültige Anmeldung aufgerufen werden können.
+
+\subsection{Verwendung von Bearer-Token bei geschützten Requests}
+Ein wichtiger technischer Punkt der Umsetzung war, dass benutzerspezifische Daten nicht ohne Authentifizierung geladen werden können. Wenn das Frontend persönliche Informationen vom Backend anfordert, muss ein gültiges Bearer-Token mitgesendet werden. Dieses Token wird nach erfolgreicher Anmeldung über Keycloak bereitgestellt und bei geschützten HTTP-Anfragen übertragen \cite{keycloak_docs}. Erst dadurch kann das Backend prüfen, ob der Benutzer berechtigt ist, auf die jeweiligen Daten zuzugreifen.
+
+\subsection{Herausforderungen bei der Integration von Keycloak}
+Die Integration von Keycloak in Angular war mit mehreren Herausforderungen verbunden. Dazu gehörten insbesondere die korrekte Weiterleitung nach dem Login, die Behandlung geschützter Routen sowie die sichere Übergabe des Bearer-Tokens bei Anfragen an das Backend. Diese Punkte waren im Frontend besonders relevant, da die Anwendung nur dann benutzerfreundlich funktioniert, wenn Anmeldung, Rückleitung und Zugriffsschutz zuverlässig zusammenspielen. Die Auseinandersetzung mit diesen Problemen war daher ein wichtiger Teil meines praktischen Projektbeitrags.
+
+\subsection{Analyse bestehender Lösungen}
+Im Zusammenhang mit Benutzerkonten stellte sich die Frage, ob zusätzlich eine eigene Passwortverwaltung innerhalb der Anwendung umgesetzt werden sollte. Bei der Betrachtung bestehender Lösungen wie Bitwarden oder 1Password wird jedoch deutlich, dass sich professionelle Passwortverwaltung auf Sicherheit, Verschlüsselung und geräteübergreifende Synchronisation spezialisiert \cite{keycloak_home}. Diese Zielsetzung unterscheidet sich klar vom Schwerpunkt des MedienAbonnementManagers.
+
 \subsection{Sicherheits- und Datenschutzbetrachtung}
-Text ...
+Eine selbst entwickelte Verwaltung von Passwörtern oder besonders sensiblen Zugangsdaten hätte hohe Anforderungen an Datenschutz und Sicherheit gestellt. Da der Fokus meines Projektteils auf der Frontend-Entwicklung lag, wurde bewusst auf eine eigene Passwortlösung verzichtet. Stattdessen war es sinnvoller, ein bestehendes Authentifizierungssystem einzubinden und die Anwendung auf ihre eigentlichen Kernfunktionen zu konzentrieren.
+
 \subsection{Entscheidung: Eigenlösung vs. Integration}
-Text ...
+Die Entscheidung fiel daher zugunsten einer Integration von Keycloak und gegen eine selbst entwickelte Passwortverwaltung. Diese Lösung reduziert die Komplexität im Frontend, verbessert die Sicherheit und ermöglicht eine klarere Trennung zwischen Benutzeroberfläche und Authentifizierungslogik. Für das Projekt war diese Entscheidung sowohl technisch als auch organisatorisch sinnvoll.
