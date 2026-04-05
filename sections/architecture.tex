@@ -8,13 +8,20 @@ Die Provider-Verwaltung wurde als eigener geschützter Bereich innerhalb der Ang
 \subsection{Bearbeitung und Speicherung von Abonnements}
 In der Oberfläche können Benutzer Anbieter als aktiv markieren und zusätzliche Angaben wie Abrechnungszyklus und Datum der letzten Abbuchung festlegen. Diese Eingaben werden im Frontend verarbeitet und anschließend gesammelt an das Backend übermittelt. Die Verwendung von Formularlogik und Datenbindung in Angular erleichtert dabei die direkte Verknüpfung zwischen Eingabefeldern und angezeigten Daten \cite{angular_forms}. Dadurch konnten Änderungen in der Oberfläche unmittelbar sichtbar gemacht werden.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{pics/6.1.2_Bild}
+    \caption{Eingabemaske zur Erfassung und Speicherung eines Abonnements}
+    \label{fig:subscription_input_form}
+\end{figure}
+
 \subsection{Filter- und Suchfunktionen in der Oberfläche}
 Damit die Verwaltung vieler Anbieter benutzerfreundlich bleibt, wurde die Oberfläche um Such- und Filterfunktionen ergänzt. Benutzer können nach Anbietern suchen oder sich nur bereits aktivierte Abonnements anzeigen lassen. Diese Interaktionsmöglichkeiten verbessern die Nutzbarkeit der Anwendung deutlich, da relevante Einträge schneller gefunden und bearbeitet werden können.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
-    \fbox{\parbox[c][5cm][c]{0.82\textwidth}{\centering\textbf{Platzhalter für Frontend-Screenshot}\\Abo-Verwaltung mit Filter- und Bearbeitungsfunktionen\\Hier später Screenshot der Providerverwaltung einfügen.}}
-    \caption{Platzhalter für einen Screenshot der Abo-Verwaltung}
+    \includegraphics[width=\textwidth]{pics/Abbildung_5}
+    \caption{Abo-Verwaltung mit Filter- und Bearbeitungsfunktionen}
     \label{fig:placeholder_subscription_management}
 \end{figure}
 
@@ -42,17 +49,17 @@ Für einzelne Filme wurde eine eigene Detailansicht umgesetzt. Dort werden weite
 \subsection{Verbindung zur Anbieteranzeige}
 Ein besonderer Fokus lag auf der Darstellung von Streaming-Anbietern im Zusammenhang mit Filminformationen. Dadurch kann die Anwendung anzeigen, auf welchen Plattformen ein Film verfügbar ist. Aus Sicht des Frontends bestand die Aufgabe vor allem darin, diese Informationen übersichtlich darzustellen und sinnvoll in die Filmansichten zu integrieren. Diese Verbindung zwischen Inhalt und Verfügbarkeit stellt den eigentlichen Kernnutzen des Projekts dar.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
-    \fbox{\parbox[c][5cm][c]{0.82\textwidth}{\centering\textbf{Platzhalter für Frontend-Screenshot}\\Filmsuche oder Trending-Ansicht\\Hier später Screenshot der Suche oder Startseite einfügen.}}
-    \caption{Platzhalter für einen Screenshot der Filmsuche oder Trending-Ansicht}
+    \includegraphics[width=\textwidth]{pics/Abbildung_2_DetailPage}
+    \caption{Oberer Bereich der Film-Detailansicht mit Poster, Metadaten und Beschreibung}
     \label{fig:placeholder_movie_search}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
-    \fbox{\parbox[c][5cm][c]{0.82\textwidth}{\centering\textbf{Platzhalter für Frontend-Screenshot}\\Detailansicht eines Films mit Metadaten\\Hier später Screenshot der Film-Detailseite einfügen.}}
-    \caption{Platzhalter für einen Screenshot der Film-Detailansicht}
+    \includegraphics[width=\textwidth]{pics/Abbildung_2_DetailPage_2}
+    \caption{Unterer Bereich der Film-Detailansicht mit \glqq Passende Abos\grqq{} und allgemeiner Anbieterübersicht}
     \label{fig:placeholder_movie_detail}
 \end{figure}
 
@@ -80,10 +87,10 @@ Eine selbst entwickelte Verwaltung von Passwörtern oder besonders sensiblen Zug
 \subsection{Entscheidung: Eigenlösung vs. Integration}
 Die Entscheidung fiel daher zugunsten einer Integration von Keycloak und gegen eine selbst entwickelte Passwortverwaltung. Diese Lösung reduziert die Komplexität im Frontend, verbessert die Sicherheit und ermöglicht eine klarere Trennung zwischen Benutzeroberfläche und Authentifizierungslogik. Für das Projekt war diese Entscheidung sowohl technisch als auch organisatorisch sinnvoll.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
-    \fbox{\parbox[c][5cm][c]{0.82\textwidth}{\centering\textbf{Platzhalter für Frontend-Screenshot}\\Login oder geschützter Bereich nach erfolgreicher Anmeldung\\Hier später Screenshot zur Keycloak-Integration einfügen.}}
-    \caption{Platzhalter für einen Screenshot des Login-Flows oder eines geschützten Bereichs}
+    \includegraphics[width=\textwidth]{pics/6.4.7_Bild}
+    \caption{Geschützter Bereich der Abo-Verwaltung nach erfolgreicher Anmeldung über Keycloak}
     \label{fig:placeholder_login}
 \end{figure}
 
