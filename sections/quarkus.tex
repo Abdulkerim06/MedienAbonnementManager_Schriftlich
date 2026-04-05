@@ -1,0 +1,93 @@
+\section{Quarkus – Grundlagen und Einsatz in der Anwendung}
+\setauthor{MT}
+
+Quarkus ist ein modernes, quelloffenes Java-Framework, das speziell für den Einsatz 
+in containerisierten und Cloud-nativen Umgebungen entwickelt wurde. Ziel des Frameworks 
+ist es, den Prozess der Bereitstellung von Java-Applikationen in Cloud-Umgebungen zu 
+vereinfachen und zu optimieren. Dabei unterstützt Quarkus Entwicklerinnen und Entwickler 
+dabei, Applikationen auch ohne tiefgehende Kenntnisse der zugrundeliegenden Infrastruktur 
+bereitzustellen.
+
+Ein wesentliches Merkmal von Quarkus ist seine Kompatibilität mit einer Vielzahl 
+etablierter Frameworks und Standards. Dazu zählen unter anderem Eclipse MicroProfile, 
+RESTEasy (JAX-RS), Hibernate ORM (JPA), Apache Kafka sowie Spring. Diese breite 
+Unterstützung ermöglicht es, bestehende Kenntnisse und Bibliotheken direkt einzusetzen, 
+ohne grundlegende Umstrukturierungen vornehmen zu müssen.
+
+Quarkus hebt sich durch seine Leichtgewichtigkeit von anderen Java-Frameworks ab. 
+Konkret äußert sich dies in einer geringen Startzeit, einem niedrigen Speicherverbrauch 
+sowie der einfachen Möglichkeit, Projekte in Cloud-Umgebungen bereitzustellen.
+
+
+\section{Grundprinzip von Quarkus}
+\setauthor{MT}
+
+Ein zentrales Merkmal von Quarkus liegt in der Art, wie Java-Anwendungen kompiliert 
+und ausgeführt werden. Um dies zu verstehen, ist es notwendig, die zwei grundlegenden 
+Kompilierungsansätze zu unterscheiden: die Just-In-Time-Kompilierung (JIT) und die 
+Ahead-of-Time-Kompilierung (AOT).
+
+\subsection{Just-In-Time-Kompilierung (JIT)}
+
+Im klassischen Java-Ausführungsmodell wird Quellcode zunächst vom Java-Compiler in 
+plattformunabhängigen Bytecode übersetzt. Dieser Bytecode wird anschließend von der 
+Java Virtual Machine (JVM) interpretiert. Die JIT-Kompilierung ist dabei ein 
+Optimierungsmechanismus der JVM: Häufig ausgeführte Codeabschnitte werden zur Laufzeit 
+in nativen Maschinencode übersetzt, was die Ausführungsgeschwindigkeit erhöht.
+
+Der Nachteil dieses Ansatzes liegt darin, dass die JVM beim Start der Applikation 
+zunächst hochgefahren werden muss und die JIT-Optimierungen erst schrittweise während 
+der Laufzeit greifen. Dies führt zu längeren Startzeiten und einem erhöhten 
+Speicherverbrauch – Faktoren, die in containerisierten Umgebungen mit häufigen 
+Neustarts besonders nachteilig sind.
+
+\subsection{Ahead-of-Time-Kompilierung (AOT)}
+
+Die Ahead-of-Time-Kompilierung verfolgt einen grundlegend anderen Ansatz: Der gesamte 
+Anwendungscode wird bereits vor der Ausführung, also zum Zeitpunkt des Build-Prozesses, 
+in nativen Maschinencode übersetzt. Quarkus nutzt hierfür GraalVM Native Image, ein 
+Werkzeug, das Java-Anwendungen in plattformspezifische, ausführbare Binärdateien 
+kompiliert.
+
+Das Ergebnis ist eine native ausführbare Datei, die ohne eine laufende JVM auskommt. 
+Dies hat folgende Vorteile:
+
+\begin{itemize}
+    \item \textbf{Schnelle Startzeit:} Da keine JVM initialisiert werden muss und alle 
+    Optimierungen bereits zur Build-Zeit vorgenommen wurden, startet die Anwendung 
+    in Millisekunden.
+    \item \textbf{Geringer Speicherverbrauch:} Der Wegfall der JVM-Laufzeitumgebung 
+    reduziert den RAM-Bedarf erheblich.
+    \item \textbf{Eignung für containerisierte Umgebungen:} Kurze Startzeiten und 
+    geringer Ressourcenverbrauch machen AOT-kompilierte Anwendungen besonders 
+    geeignet für Kubernetes und ähnliche Plattformen.
+\end{itemize}
+
+Als Nachteil ist die deutlich längere Build-Zeit im Vergleich zur JIT-Kompilierung 
+zu nennen, da die gesamte Kompilierung und Optimierung vorab stattfindet.
+
+\subsection{Hot Reload}
+
+Für den Entwicklungsprozess bietet Quarkus einen sogenannten Hot-Reload-Mechanismus, 
+bekannt als \textit{Quarkus Dev Mode}. Dabei werden Änderungen am Quellcode automatisch 
+erkannt und ohne Neustart der Anwendung übernommen. Dies beschleunigt den 
+Entwicklungszyklus erheblich, da zeitaufwändige Neustarts entfallen. Der Dev Mode 
+verwendet intern JIT-Kompilierung, um diese schnelle Rückkopplungsschleife zu 
+ermöglichen – die AOT-Kompilierung wird lediglich für den finalen Build eingesetzt.
+
+
+\section{Quarkus in der vorliegenden Applikation}
+\setauthor{MT}
+
+Quarkus wird in der vorliegenden Anwendung als Hauptframework für das Backend verwendet. 
+Für die Datenbankanbindung kommt Hibernate ORM mit Panache zum Einsatz, das eine 
+vereinfachte Abstraktion des JPA-Standards bietet und den Datenbankzugriff mit weniger 
+Boilerplate-Code ermöglicht.
+
+Die Anwendung wird mittels AOT-Kompilierung als native ausführbare Datei gebaut. 
+Obwohl die Build-Zeit dadurch im Vergleich zur klassischen JIT-Kompilierung länger 
+ausfällt, überwiegen die Vorteile im Betrieb: Die Applikation weist eine deutlich 
+verkürzte Startzeit auf, benötigt weniger Arbeitsspeicher und ist optimal für den 
+Einsatz in einer containerisierten Umgebung geeignet. Diese Eigenschaften sind 
+insbesondere in Cloud-Deployments von Vorteil, wo Ressourceneffizienz und 
+Skalierbarkeit zentrale Anforderungen darstellen.

@@ -1,3 +1,4 @@
+﻿\setauthor{AC}
 \section{Implementierung der Abo-Verwaltung}
 Ein wesentlicher Bestandteil meines Projektteils war die Umsetzung der Benutzeroberfläche zur Verwaltung persönlicher Streaming-Abonnements. Ziel war es, eine übersichtliche und einfach bedienbare Ansicht zu entwickeln, in der Benutzer ihre aktiven Anbieter verwalten und Änderungen direkt speichern können. Die technische Umsetzung erfolgte im Angular-Frontend mit einer eigenständigen Komponente für die Providerverwaltung sowie zugehörigen Services für die Kommunikation mit dem Backend \cite{angular_overview,angular_forms}.
 
@@ -9,6 +10,13 @@ In der Oberfläche können Benutzer Anbieter als aktiv markieren und zusätzlich
 
 \subsection{Filter- und Suchfunktionen in der Oberfläche}
 Damit die Verwaltung vieler Anbieter benutzerfreundlich bleibt, wurde die Oberfläche um Such- und Filterfunktionen ergänzt. Benutzer können nach Anbietern suchen oder sich nur bereits aktivierte Abonnements anzeigen lassen. Diese Interaktionsmöglichkeiten verbessern die Nutzbarkeit der Anwendung deutlich, da relevante Einträge schneller gefunden und bearbeitet werden können.
+
+\begin{figure}[h]
+    \centering
+    \fbox{\parbox[c][5cm][c]{0.82\textwidth}{\centering\textbf{Platzhalter für Frontend-Screenshot}\\Abo-Verwaltung mit Filter- und Bearbeitungsfunktionen\\Hier später Screenshot der Providerverwaltung einfügen.}}
+    \caption{Platzhalter für einen Screenshot der Abo-Verwaltung}
+    \label{fig:placeholder_subscription_management}
+\end{figure}
 
 \section{Darstellung von Laufzeiten und Kündigungszeitpunkten}
 Neben der Auswahl von Streaming-Anbietern war auch die Darstellung zeitlicher Informationen ein wichtiger Teil der Abo-Verwaltung. Aus Frontend-Sicht ging es dabei vor allem darum, Eingabemöglichkeiten für abrechnungsrelevante Daten bereitzustellen und diese verständlich in die Oberfläche einzubinden. Die Benutzer sollen dadurch ihre gespeicherten Abonnements besser nachvollziehen können.
@@ -34,6 +42,20 @@ Für einzelne Filme wurde eine eigene Detailansicht umgesetzt. Dort werden weite
 \subsection{Verbindung zur Anbieteranzeige}
 Ein besonderer Fokus lag auf der Darstellung von Streaming-Anbietern im Zusammenhang mit Filminformationen. Dadurch kann die Anwendung anzeigen, auf welchen Plattformen ein Film verfügbar ist. Aus Sicht des Frontends bestand die Aufgabe vor allem darin, diese Informationen übersichtlich darzustellen und sinnvoll in die Filmansichten zu integrieren. Diese Verbindung zwischen Inhalt und Verfügbarkeit stellt den eigentlichen Kernnutzen des Projekts dar.
 
+\begin{figure}[h]
+    \centering
+    \fbox{\parbox[c][5cm][c]{0.82\textwidth}{\centering\textbf{Platzhalter für Frontend-Screenshot}\\Filmsuche oder Trending-Ansicht\\Hier später Screenshot der Suche oder Startseite einfügen.}}
+    \caption{Platzhalter für einen Screenshot der Filmsuche oder Trending-Ansicht}
+    \label{fig:placeholder_movie_search}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \fbox{\parbox[c][5cm][c]{0.82\textwidth}{\centering\textbf{Platzhalter für Frontend-Screenshot}\\Detailansicht eines Films mit Metadaten\\Hier später Screenshot der Film-Detailseite einfügen.}}
+    \caption{Platzhalter für einen Screenshot der Film-Detailansicht}
+    \label{fig:placeholder_movie_detail}
+\end{figure}
+
 \section{Account- und Passwortverwaltung}
 Die Benutzerverwaltung wurde im Frontend nicht als Eigenlösung umgesetzt, sondern über die Integration von Keycloak realisiert. Dadurch konnte auf eine eigene Passwortspeicherung verzichtet werden, während gleichzeitig ein professioneller und sicherer Anmeldeprozess in die Anwendung eingebunden wurde \cite{keycloak_docs,keycloak_home}. Für meinen Projektteil war vor allem relevant, wie sich Login, Registrierung und geschützte Routen in die Angular-Anwendung integrieren lassen.
 
@@ -57,3 +79,25 @@ Eine selbst entwickelte Verwaltung von Passwörtern oder besonders sensiblen Zug
 
 \subsection{Entscheidung: Eigenlösung vs. Integration}
 Die Entscheidung fiel daher zugunsten einer Integration von Keycloak und gegen eine selbst entwickelte Passwortverwaltung. Diese Lösung reduziert die Komplexität im Frontend, verbessert die Sicherheit und ermöglicht eine klarere Trennung zwischen Benutzeroberfläche und Authentifizierungslogik. Für das Projekt war diese Entscheidung sowohl technisch als auch organisatorisch sinnvoll.
+
+\begin{figure}[h]
+    \centering
+    \fbox{\parbox[c][5cm][c]{0.82\textwidth}{\centering\textbf{Platzhalter für Frontend-Screenshot}\\Login oder geschützter Bereich nach erfolgreicher Anmeldung\\Hier später Screenshot zur Keycloak-Integration einfügen.}}
+    \caption{Platzhalter für einen Screenshot des Login-Flows oder eines geschützten Bereichs}
+    \label{fig:placeholder_login}
+\end{figure}
+
+\section{Herausforderungen und Reflexion der Frontend-Entwicklung}
+Im Verlauf der Frontend-Umsetzung zeigte sich, dass nicht nur die reine Darstellung von Oberflächen relevant ist, sondern vor allem die saubere Verbindung zwischen Benutzerführung, Authentifizierung und Datenlogik. Gerade dort entstanden mehrere Erkenntnisse, die für den Projektverlauf und für die eigene fachliche Weiterentwicklung wesentlich waren.
+
+\subsection{Herausforderungen bei der Integration von Keycloak in Angular}
+Eine der größten Herausforderungen meines Projektteils war die Integration von Keycloak in das Angular-Frontend. Ein praktisches Problem dabei war, dass für aktuelle Angular-Versionen vergleichsweise wenig gut strukturierte und direkt übertragbare Beispiele verfügbar waren. Viele gefundene Lösungen bezogen sich auf ältere Projektstände, unvollständige Konfigurationen oder andere Framework-Kombinationen. Dadurch war es notwendig, die Einbindung von Login, Redirect, Token-Verwaltung und geschützten Routen schrittweise selbst nachzuvollziehen und an die eigene Anwendung anzupassen.
+
+\subsection{Herausforderungen bei der Umsetzung von Backend-Daten in der Benutzeroberfläche}
+Ein weiterer anspruchsvoller Punkt war die Übersetzung der vom Backend gelieferten Informationen in eine für Benutzer logische und leicht verständliche Oberfläche. Die gelieferten Daten mussten nicht nur technisch korrekt angezeigt, sondern auch sinnvoll gruppiert, gefiltert und mit Interaktionen verknüpft werden. Besonders bei Providerdaten, Benutzerabonnements und filmbasierten Anbieterinformationen war es wichtig, die Datenstruktur aus Services und DTOs so in die UI zu übertragen, dass die Oberfläche konsistent bleibt und Benutzer die Zusammenhänge schnell erfassen können.
+
+\subsection{Reflexion der anfänglichen Frontend-Entscheidungen}
+Rückblickend wurde deutlich, dass eine frühe Oberflächenidee nicht automatisch auch die beste Struktur für die spätere Weiterentwicklung darstellt. Zu Beginn lag der Fokus stark darauf, einzelne Funktionen möglichst schnell sichtbar zu machen. Erst im Verlauf der Umsetzung zeigte sich, wie wichtig eine klare Trennung zwischen Komponenten, Services, Zuständen und geschützten Bereichen ist. Diese Erkenntnis war für die Frontend-Entwicklung ähnlich wertvoll wie die Datenbank-Reflexion im Backend, weil sie gezeigt hat, dass gute Wartbarkeit nicht nur durch funktionierenden Code entsteht, sondern durch eine durchdachte Oberflächen- und Zustandsstruktur.
+
+\subsection{Erkenntnisgewinn für den weiteren Projektverlauf}
+Die Auseinandersetzung mit diesen Frontend-Problemen hat wesentlich dazu beigetragen, die Anwendung systematischer weiterzuentwickeln. Insbesondere die Keycloak-Integration und die saubere Abbildung von Backend-Daten auf UI-Komponenten haben gezeigt, dass moderne Webentwicklung nicht nur aus Design und API-Aufrufen besteht, sondern ein durchgängiges Verständnis von Authentifizierung, Datenfluss und Benutzerführung erfordert. Gerade dieser Lernprozess stellt einen wichtigen Teil meines persönlichen Beitrags zur Diplomarbeit dar.
