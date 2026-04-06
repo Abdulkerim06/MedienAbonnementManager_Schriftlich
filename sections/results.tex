@@ -1,3 +1,58 @@
+\setauthor{AC}
 \section{Erfüllung der gesetzten Ziele}
+Kapitel 8 bewertet den erreichten Stand meines Frontend-Projektteils im Hinblick auf die ursprünglich verfolgten Ziele. Im Mittelpunkt stand dabei nicht die vollständige Abdeckung aller denkbaren Medienfunktionen, sondern die Entwicklung einer funktionalen und nachvollziehbaren Benutzeroberfläche für die zentrale Verwaltung persönlicher Streaming-Abonnements. Aus heutiger Sicht konnte dieses Kernziel in wesentlichen Teilen erreicht werden.
+
+\subsection{Erreichte Kernziele im Frontend}
+Ein zentrales Ziel meines Projektteils war die Umsetzung einer Benutzeroberfläche, in der Benutzer ihre Streaming-Abonnements verwalten können. Dieses Ziel wurde grundsätzlich erreicht. Die Anwendung bietet einen geschützten Bereich, in dem Anbieter geladen, gefiltert, ausgewählt und gemeinsam mit zusätzlichen Angaben wie Abrechnungszyklus oder Datum der letzten Abbuchung gespeichert werden können. Dadurch entstand eine Frontend-Lösung, die den Kernnutzen von Mediahub bereits sichtbar und praktisch nutzbar macht.
+
+Auch die Integration der Authentifizierung mit Keycloak kann als erreichtes Ziel bewertet werden. Login, Registrierung, geschützte Routen und die Übergabe von Bearer-Tokens an das Backend wurden so umgesetzt, dass persönliche Funktionen nicht öffentlich zugänglich sind. Gerade für eine Anwendung, in der benutzerspezifische Abo-Daten verarbeitet werden, stellt dies einen wesentlichen Qualitätsfaktor dar. Die erfolgreiche Einbindung dieser Sicherheitslogik war daher nicht nur ein technisches Detail, sondern ein zentraler Bestandteil des Projektziels.
+
+Ein weiteres wichtiges Ziel war die Verbindung von Filmsuche und Anbieterinformationen innerhalb einer gemeinsamen Oberfläche. Auch dieses Ziel wurde weitgehend erreicht. Benutzer können nach Filmen suchen, Detailinformationen aufrufen und erkennen, auf welchen Plattformen ein Film verfügbar ist. Besonders relevant ist dabei die Verknüpfung mit den eigenen gespeicherten Abonnements, da dadurch nicht nur allgemeine Filmdaten angezeigt werden, sondern ein konkreter Mehrwert für die Nutzung entsteht.
+
+\subsection{Teilweise erreichte oder bewusst eingegrenzte Ziele}
+Trotz dieses insgesamt positiven Ergebnisses wurden nicht alle denkbaren Funktionen vollständig ausgebaut. Die Film-Detailseite ist funktional bereits gut nutzbar, weist jedoch in einzelnen Bereichen noch Potenzial für gestalterische oder inhaltliche Verfeinerungen auf. Dazu zählen kleinere Verbesserungen in der Darstellung, in der Informationsaufbereitung und in der weiteren Ausdifferenzierung einzelner UI-Elemente. Das Ziel einer funktionierenden Detailansicht wurde erreicht, die Ausarbeitung kann jedoch noch weiter verbessert werden.
+
+Auch die Abo-Verwaltung ist im Kern funktionsfähig, wurde jedoch nicht in jedem Punkt vollständig zu Ende entwickelt. Die Erfassung und Speicherung der Daten funktioniert, dennoch wären zusätzliche Funktionen wie noch klarere Auswertungen, erweiterte Komfortfunktionen oder eine tiefergehende Unterstützung bei Kündigungs- und Abrechnungsfragen sinnvoll. Der aktuelle Stand bildet somit eine tragfähige Grundlage, ist aber noch nicht als vollständig ausgeschöpfte Endlösung zu verstehen.
+
+Die Verlaufs- beziehungsweise History-Funktion ist ebenfalls ein Beispiel für einen nur teilweise erreichten Funktionsumfang. Sie wurde im Projekt berücksichtigt, aber nicht in dem Maß ausgebaut, dass daraus bereits ein gleichwertig ausgereifter Kernbestandteil der Anwendung geworden wäre. Im Rahmen der Bewertung ist daher wichtig, diese Funktion ehrlich als Teilergebnis einzuordnen.
+
+\subsection{Bewusste Reduktion des Projektumfangs}
+Für die Beurteilung der Zielerreichung ist außerdem wesentlich, dass einzelne Themen bewusst nicht in den Mittelpunkt aufgenommen wurden. Dazu zählen insbesondere Mediatheken, Livestreams oder sportbezogene Inhalte wie Fußball-Übertragungen. Diese Bereiche wären fachlich interessant gewesen, hätten den Umfang des Projekts jedoch deutlich vergrößert und die inhaltliche Klarheit geschwächt.
+
+Die Entscheidung, den Fokus auf Filme zu legen, war daher aus heutiger Sicht sinnvoll. Sie ermöglichte es, eine klar abgegrenzte Anwendung umzusetzen, statt viele Themen nur oberflächlich anzuschneiden. Die gesetzten Ziele wurden dadurch nicht verkleinert, sondern präzisiert. Gerade im Rahmen einer Diplomarbeit ist eine klar eingegrenzte, nachvollziehbar umgesetzte Lösung oft wertvoller als ein zu breites, aber unausgereiftes System.
+
 \section{Bewertung des Nutzens für Endanwender}
+Der praktische Nutzen der Anwendung ergibt sich vor allem aus der Zusammenführung zweier bislang getrennter Perspektiven: einerseits der persönlichen Verwaltung vorhandener Streaming-Abonnements und andererseits der Frage, wo ein bestimmter Film tatsächlich verfügbar ist. Für Endanwender entsteht dadurch ein Mehrwert, weil Informationen nicht mehr an mehreren Stellen getrennt gesucht und gedanklich zusammengeführt werden müssen.
+
+\subsection{Mehrwert durch zentrale Abo-Verwaltung}
+Die Abo-Verwaltung bietet für Benutzer vor allem deshalb einen konkreten Nutzen, weil sie eine zentrale Übersicht über gespeicherte Anbieter schafft. In der Praxis entstehen Probleme häufig nicht dadurch, dass einzelne Abonnements schwer abschließbar wären, sondern dadurch, dass im Laufe der Zeit mehrere Dienste parallel genutzt werden und der Überblick über Kosten, Laufzeiten und tatsächliche Verwendung verloren geht. Bereits die strukturierte Erfassung dieser Informationen kann dazu beitragen, Entscheidungen bewusster zu treffen und unnötige oder doppelte Abonnements eher zu erkennen.
+
+Hinzu kommt, dass die Verwaltung persönlicher Anbieter innerhalb eines geschützten Bereichs stattfindet. Dadurch wird klar zwischen öffentlich verfügbaren Filmdaten und privaten Benutzerdaten unterschieden. Für Endanwender ist dies nicht nur technisch relevant, sondern auch vertrauensbildend, da die Anwendung erkennbar zwischen allgemeiner Recherche und personenbezogener Verwaltung trennt.
+
+\subsection{Mehrwert durch Filmsuche und Anbieterabgleich}
+Ein besonders hoher praktischer Nutzen ergibt sich aus der Filmrecherche in Verbindung mit Anbieterinformationen. Benutzer können nicht nur nach Filmen suchen, sondern direkt erkennen, welche Anbieter grundsätzlich verfügbar sind und welche davon bereits zu den eigenen gespeicherten Abonnements gehören. Diese Verknüpfung reduziert den Aufwand, externe Plattformen einzeln zu prüfen, und unterstützt damit genau jenes Problem, das zur Motivation des Projekts beigetragen hat.
+
+Gerade aus Frontend-Sicht war dieser Punkt besonders wichtig, weil die Anwendung dadurch nicht bloß Verwaltungsoberfläche bleibt, sondern einen unmittelbaren Alltagsnutzen erzeugt. Die Informationen werden so dargestellt, dass Benutzer nicht nur Daten abrufen, sondern daraus eine konkrete Entscheidung ableiten können, etwa ob ein Film bereits mit den vorhandenen Abos angesehen werden kann.
+
+\subsection{Grenzen des aktuellen Nutzens}
+Der Nutzen für Endanwender ist jedoch nicht in allen Bereichen gleich stark ausgeprägt. Da sich die Anwendung derzeit auf Filme konzentriert, fehlt eine breitere Abdeckung weiterer Medienarten. Ebenso sind Komfortfunktionen wie automatische Erinnerungen, weiterführende Kostenanalysen oder ein vollständig ausgebauter Verlauf noch nicht in einer Form vorhanden, die den täglichen Nutzen weiter erhöhen würde.
+
+Daraus ergibt sich insgesamt ein differenziertes Bild: Der bestehende Projektstand bietet bereits einen erkennbaren und praktischen Mehrwert, insbesondere für Benutzer, die ihre Filmrecherche und ihre Streaming-Abos an einer Stelle zusammenführen möchten. Gleichzeitig zeigt die Anwendung deutlich, an welchen Stellen zukünftige Erweiterungen den Endanwendernutzen noch weiter steigern könnten.
+
 \section{Reflexion der eigenen Leistung}
+Die Bewertung der eigenen Leistung fällt insgesamt positiv aus, muss jedoch zugleich selbstkritisch bleiben. Mein Beitrag im Projekt lag klar im Frontend. Dort ging es nicht nur darum, Oberflächen optisch darzustellen, sondern eine funktionierende, geschützte und mit dem Backend abgestimmte Benutzeranwendung zu entwickeln. Gerade in dieser Verbindung aus UI, Datenfluss und Authentifizierung lag der eigentliche Anspruch meiner Arbeit.
+
+\subsection{Positiv bewertete Aspekte des eigenen Beitrags}
+Positiv bewerte ich vor allem, dass ich mehrere anspruchsvolle Frontend-Bestandteile tatsächlich umsetzen konnte. Dazu zählen die Filmsuche, die Film-Detailansicht, die geschützte Abo-Verwaltung sowie die Integration von Keycloak. Besonders die Keycloak-Anbindung war für mich ein wichtiger Lernschritt, weil sie weit über reine Oberflächengestaltung hinausging und ein tieferes Verständnis für Authentifizierung, geschützte Routen und den Umgang mit Tokens erforderte.
+
+Ebenso positiv ist aus meiner Sicht, dass sich mein Projektteil im Laufe der Zeit deutlich weiterentwickelt hat. Anfangs stand stärker im Vordergrund, Funktionen überhaupt sichtbar und bedienbar zu machen. Mit zunehmendem Projektfortschritt wurde mir jedoch klarer, wie wichtig saubere Struktur, sinnvolle Datenübergabe und eine konsistente Benutzerführung sind. Dass ich diese Erkenntnisse nicht nur theoretisch gewonnen, sondern schrittweise in die Anwendung eingearbeitet habe, bewerte ich als wesentlichen persönlichen Fortschritt.
+
+\subsection{Selbstkritische Betrachtung und Verbesserungsmöglichkeiten}
+Selbstkritisch betrachtet hätte ich einzelne Frontend-Entscheidungen früher strukturierter vorbereiten können. Gerade bei der Verbindung zwischen Backend-Daten und Benutzeroberfläche zeigte sich, dass eine zunächst funktionierende Lösung nicht automatisch auch die klarste oder wartbarste Lösung ist. Teilweise mussten Komponenten, Datenflüsse oder Darstellungen im Nachhinein überarbeitet werden, weil erst im praktischen Einsatz deutlich wurde, welche Informationen wirklich relevant sind und wie sie für Benutzer logisch angeordnet sein sollten.
+
+Auch bei der Abo-Verwaltung und der Detailansicht ist aus heutiger Sicht erkennbar, dass noch Raum für Verfeinerungen besteht. Zwar sind die zentralen Funktionen vorhanden, doch zusätzliche Komfortfunktionen, eine noch klarere UX und eine weiter ausgebaute Unterstützung für zeitliche Abo-Aspekte würden die Qualität des Frontends weiter erhöhen. Die teilweise umgesetzte History-Funktion zeigt ebenfalls, dass nicht jeder begonnene Bereich im gleichen Ausmaß ausgereift abgeschlossen werden konnte.
+
+\subsection{Lernfortschritt und zentrale Erkenntnisse}
+Der wichtigste Erkenntnisgewinn meiner Arbeit liegt darin, dass Frontend-Entwicklung in einem solchen Projekt weit mehr ist als das Erstellen sichtbarer Seiten. Entscheidend ist, wie Daten aus dem Backend übernommen, sinnvoll strukturiert, sicher geschützt und für Benutzer verständlich dargestellt werden. Gerade bei der Arbeit mit Keycloak und bei der Umsetzung der Abo-Logik wurde deutlich, dass gutes Frontend-Design immer auch Architektur- und Integrationsarbeit ist.
+
+Rückblickend war es richtig, den Fokus klar auf Filme und auf die zentrale Abo-Verwaltung zu legen. Diese Eingrenzung machte es möglich, die wesentlichen Funktionen tatsächlich umzusetzen und zugleich wichtige praktische Erfahrungen mit moderner Webentwicklung zu sammeln. Insgesamt sehe ich meinen Beitrag daher als gelungen an, auch wenn der erreichte Stand nicht als vollständig abgeschlossen, sondern als solide und fachlich nachvollziehbare Grundlage für weitere Ausbauschritte zu verstehen ist.
