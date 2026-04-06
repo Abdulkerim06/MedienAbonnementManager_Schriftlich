@@ -25,7 +25,13 @@ Die Kommunikation zwischen Frontend und Backend erfolgt über HTTP-basierte REST
 
 Im Projekt wurden insbesondere Services für Filmdaten, Providerdaten und die Authentifizierungsanbindung eingesetzt. Dadurch konnte die Anwendung Suchanfragen, Detailansichten und benutzerspezifische Inhalte in einer einheitlichen Struktur verarbeiten. Für das Frontend war dabei vor allem wichtig, dass externe Daten zuverlässig geladen, zwischengespeichert und in geeigneter Form in der Oberfläche dargestellt werden.
 
+Ein typischer Ablauf innerhalb der Anwendung beginnt mit einer Benutzereingabe im Frontend, etwa einer Filmsuche. Die Suchkomponente übergibt den eingegebenen Titel an einen zuständigen Angular-Service, der daraus einen HTTP-Request an das Backend erzeugt. Das Backend verarbeitet diese Anfrage, ruft bei Bedarf externe Filmdaten über die angebundenen TMDB-Schnittstellen ab, bereitet die Antwort auf und liefert die relevanten Informationen als REST-Antwort an das Frontend zurück. Dort werden die Daten wieder vom Service entgegengenommen, in ein für die Oberfläche geeignetes Format überführt und anschließend in der Ergebnisliste dargestellt. Ein vergleichbarer Ablauf wird auch bei Detailansichten verwendet: Nach Auswahl eines Films wird anhand der Film-ID eine weitere Anfrage ausgelöst, damit zusätzliche Informationen wie Beschreibung, Laufzeit, Genres und verfügbare Anbieter geladen werden können.
+
+Die Trennung zwischen Komponente und Service war dabei für die Wartbarkeit besonders wichtig. Komponenten steuern Benutzerinteraktionen wie Suche, Navigation oder Auswahl eines Films, während Services die eigentliche Kommunikation mit dem Backend bündeln. Dadurch konnten Suchlogik, Detailaufrufe und Providerabfragen an zentraler Stelle verwaltet werden, ohne dieselben HTTP-Abläufe in mehreren Komponenten zu wiederholen. Gleichzeitig ließ sich die Oberfläche dadurch leichter erweitern, weil Datenquellen und Darstellung voneinander entkoppelt blieben.
+
 Bei benutzerspezifischen Daten reicht ein normaler HTTP-Aufruf jedoch nicht aus. Solche Daten können nur dann vom Backend geladen werden, wenn das Frontend ein gültiges Bearer-Token mitsendet. Dieses Token wird nach erfolgreicher Anmeldung über Keycloak bereitgestellt und bei geschützten Anfragen im Authorization-Header übertragen. Auf diese Weise kann das Backend prüfen, ob der Benutzer authentifiziert ist und Zugriff auf die angeforderten Daten besitzt \cite{keycloak_docs,keycloak_home}.
+
+Das betrifft insbesondere Aufrufe zur persönlichen Abo-Verwaltung. Wenn gespeicherte Abonnements geladen, geändert oder neu gespeichert werden, sendet das Frontend die Anfrage nicht nur an den passenden Backend-Endpunkt, sondern überträgt zusätzlich das Bearer-Token im \texttt{Authorization}-Header. Erst dadurch kann das Backend die Anfrage dem aktuell angemeldeten Benutzer zuordnen und ausschließlich dessen Daten verarbeiten. Aus Frontend-Sicht war deshalb nicht nur der reine Datenabruf relevant, sondern das verlässliche Zusammenspiel aus Service-Aufruf, Token-Übergabe und anschließender Aktualisierung der Oberfläche.
 
 \setauthor{AC}
 \section{API-Integration externer Movie-Datenbanken}
@@ -50,3 +56,5 @@ Die Angular-Anwendung erkennt den Authentifizierungsstatus der Nutzenden und ste
 \input{./sections/datenbank}
 
 \input{./sections/backend_architecture}
+\setauthor{MT}
+\input{./sections/mt/apis_mt}
