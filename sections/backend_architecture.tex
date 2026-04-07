@@ -190,6 +190,19 @@ Synchronisierungsschritt erforderlich ist. Der gesamte Vorgang wird in einer
 Transaktion ausgeführt, was durch die \texttt{@Transactional}-Annotation
 sichergestellt wird.
 
+\subsection{Konfiguration über application.properties}
+
+Die zentrale Konfiguration des Backends erfolgt über die Datei
+\path|src/main/resources/application.properties|. Dort werden unter anderem
+der TMDB-API-Schlüssel, die Datenbankverbindung über
+\path|quarkus.datasource.*| sowie die OIDC- und Keycloak-Parameter über
+\path|quarkus.oidc.*| definiert. Zusätzlich werden an dieser Stelle
+öffentliche Routen ohne Authentifizierung festgelegt sowie weitere
+anwendungsrelevante Einstellungen wie CORS, SQL-Logging und die
+Hibernate-Konfiguration verwaltet. Die projektbezogene Bündelung dieser
+Angaben erleichtert die Wartung und sorgt dafür, dass Infrastruktur-,
+Sicherheits- und Laufzeitparameter zentral nachvollziehbar bleiben.
+
 \subsection{Resource}
 
 Die Resource-Schicht der Anwendung besteht aus drei produktiven
@@ -223,6 +236,35 @@ bereit. Sie ermöglicht das Abrufen aller in der Datenbank gespeicherten
 Streaming-Anbieter sowie das manuelle Auslösen einer Synchronisierung mit
 der TMDB API über den Endpunkt \texttt{GET /api/providers/sync}.
 
+Tabelle \ref{tab:backend_rest_endpoints} gibt einen kompakten Überblick über
+die zentralen REST-Endpunkte des Backends, deren Zugriffsschutz und ihre
+jeweilige Aufgabe.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabularx}{\textwidth}{|l|X|l|X|}
+\hline
+\textbf{Methode} & \textbf{Endpunkt} & \textbf{Zugriff} & \textbf{Beschreibung} \\
+\hline
+GET & \path|/api/movies/id/{id}| & öffentlich & Abruf von Filmdaten anhand einer TMDB-ID \\
+GET & \path|/api/movies/name/{name}| & öffentlich & Filmsuche über den Titel \\
+GET & \path|/api/movies/trending/{window}| & öffentlich & Abruf aktueller Trending-Filme \\
+GET & \path|/api/movies/{id}/providers/filtered| & öffentlich & Länderbezogene Provider eines Films \\
+GET & \path|/api/movies/{id}/providers/for-user| & geschützt & Providerliste mit Benutzerbezug für den aktuell angemeldeten Benutzer \\
+GET & \path|/api/users/me| & geschützt & Abruf des eigenen Benutzerprofils \\
+GET & \path|/api/users/me/providers| & geschützt & Abruf aller Provider mit Ownership-Informationen des Benutzers \\
+PUT & \path|/api/users/me/subscriptions| & geschützt & Vollständiges Aktualisieren der gespeicherten Abonnements \\
+POST & \path|/api/users/me/history| & geschützt & Hinzufügen eines Films zur persönlichen Historie \\
+GET & \path|/api/users/me/history| & geschützt & Abruf der persönlichen Historie \\
+DELETE & \path|/api/users/me/history/{id}| & geschützt & Löschen eines Eintrags aus der persönlichen Historie \\
+GET & \path|/api/providers| & öffentlich & Abruf aller in der Datenbank gespeicherten Provider \\
+\hline
+\end{tabularx}
+\caption{Zentrale REST-Endpunkte des Backends mit Zugriffsschutz}
+\label{tab:backend_rest_endpoints}
+\end{table}
+
 \subsection{DTO -- Data Transfer Objects}
 
 In der vorliegenden Anwendung werden DTOs konsequent eingesetzt, um die
@@ -235,6 +277,9 @@ die URL des Provider-Logos sowie das Flag \texttt{ownedByUser}, das angibt,
 ob der jeweilige Benutzer diesen Anbieter abonniert hat. Die vollständige
 \texttt{Provider}-Entity sowie interne Datenbankfelder werden dabei nicht
 weitergegeben.
+Dieses Flag wird im Backend gezielt gesetzt, damit das Frontend abonnierte
+Anbieter in der Film-Detailansicht hervorheben und in der Darstellung
+priorisiert anordnen kann.
 
 Der \texttt{ProviderWithOwnership}-DTO wird vom \texttt{UserMovieDBRepository}
 direkt über eine JPQL-Konstruktorabfrage befüllt und an den Client
