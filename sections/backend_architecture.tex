@@ -79,7 +79,7 @@ Enum abgebildet, die gemeinsam das Domänenmodell der Anwendung repräsentieren.
 Die zentrale Entität ist \texttt{UserMovieDB}, welche einen registrierten Benutzer
 der Anwendung darstellt. Als Primärschlüssel wird dabei keine automatisch generierte
 Datenbank-ID verwendet, sondern die \texttt{UUID} des Benutzers aus dem
-Identity-Provider Keycloak. Dies stellt sicher, dass die interne
+Identitätsprovider Keycloak. Dies stellt sicher, dass die interne
 Benutzerrepräsentation direkt mit dem Authentifizierungssystem verknüpft ist.
 
 Die Entität \texttt{Provider} repräsentiert einen Streaming-Anbieter wie etwa
@@ -125,7 +125,7 @@ TMDB API verwendet wird. Besonders hervorzuheben ist die Methode
 Provider aus der Datenbank lädt und dabei über einen \texttt{LEFT JOIN} mit
 den Abonnements des Benutzers verknüpft. Das Ergebnis enthält für jeden
 Provider ein Flag, das angibt, ob der Benutzer diesen abonniert hat. Dadurch
-kann das Frontend mit einem einzigen Request alle relevanten Informationen
+kann das Frontend mit einer einzigen Anfrage alle relevanten Informationen
 abrufen. Darüber hinaus enthält das Repository die Methode
 \texttt{updateSubscriptions}, die die Abonnements eines Benutzers anhand
 einer übergebenen Liste von \texttt{SubscriptionUpdateDTO}-Objekten
@@ -142,7 +142,7 @@ Synchronisierung der Provider-Daten mit der TMDB API gewährleistet.
 Das \texttt{HistoryRepository} implementiert ebenfalls das
 \texttt{PanacheRepository}-Interface und stellt Methoden für den Zugriff
 auf den Filmschauerverlauf bereit. Die Methode \texttt{findByUserId} gibt
-alle History-Einträge eines Benutzers sortiert nach dem Zeitpunkt des
+alle Verlaufseinträge eines Benutzers sortiert nach dem Zeitpunkt des
 Ansehens zurück. Über \texttt{findByUserIdLimit} kann die Anzahl der
 zurückgegebenen Einträge begrenzt werden, was eine einfache Paginierung
 ermöglicht. Die Methode \texttt{hasWatchedMovie} prüft, ob ein Benutzer
@@ -225,13 +225,13 @@ Sie bietet Funktionalitäten zur Verwaltung des eigenen Benutzerprofils, der
 Streaming-Abonnements sowie der Filmschauhistorie. Über
 \texttt{GET /api/users/me} kann der aktuelle Benutzer seine Profildaten
 abrufen, wobei bei einem erstmaligen Zugriff automatisch ein Datenbankprofil
-angelegt wird. Der Endpunkt \texttt{PUT /api/users/me/subscriptions} ermöglicht das vollständige Aktualisieren der Abonnements in einem einzigen
-Request. Die History-Endpunkte erlauben das Hinzufügen, Abrufen und Löschen
+angelegt wird. Der Endpunkt \texttt{PUT /api/users/me/subscriptions} ermöglicht das vollständige Aktualisieren der Abonnements in einer einzigen
+Anfrage. Die Verlaufsendpunkte erlauben das Hinzufügen, Abrufen und Löschen
 von Einträgen im Filmschauerverlauf. Beim Löschen wird explizit geprüft, ob
 der Eintrag dem authentifizierten Benutzer gehört, bevor die Operation
 ausgeführt wird.
 
-Die \texttt{ProviderRessource} stellt Endpunkte unter \texttt{/api/providers}
+Die \texttt{ProviderResource} stellt Endpunkte unter \texttt{/api/providers}
 bereit. Sie ermöglicht das Abrufen aller in der Datenbank gespeicherten
 Streaming-Anbieter sowie das manuelle Auslösen einer Synchronisierung mit
 der TMDB API über den Endpunkt \texttt{GET /api/providers/sync}.
@@ -299,7 +299,7 @@ Popularitätswert sowie Bewertungsdurchschnitt und Bewertungsanzahl -- in
 einem kompakten Objekt, das direkt an den Client übermittelt wird.
 
 Der \texttt{HistoryDTO} dient der strukturierten Rückgabe von
-History-Einträgen an den Client. Er wird über eine statische
+Verlaufseinträgen an den Client. Er wird über eine statische
 \texttt{from(History)}-Methode aus der gleichnamigen Entity erstellt und
 stellt sicher, dass keine internen JPA-Proxies oder lazy-geladenen
 Assoziationen versehentlich serialisiert werden.

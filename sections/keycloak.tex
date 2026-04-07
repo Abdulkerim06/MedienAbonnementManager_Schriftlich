@@ -2,7 +2,7 @@
 \section{Keycloak aus Backend-Sicht}
 
 Um die Sicherheit der Authentifizierungs- und Autorisierungsanforderungen der Anwendung zu erfüllen, 
-wurde Keycloak als Identity- und Access-Management-Lösung integriert. 
+wurde Keycloak als Identitäts- und Zugriffsmanagement-Lösung integriert. 
 Keycloak bietet eine umfassende Plattform für die Verwaltung von Benutzern, 
 Rollen und Berechtigungen sowie die Unterstützung verschiedener Authentifizierungsprotokolle 
 wie OpenID Connect, OAuth 2.0 und SAML.
@@ -16,7 +16,7 @@ wie OpenID Connect, OAuth 2.0 und SAML.
 
 \section{Keycloak und JWT-Authentifizierung}
 
-Keycloak ist ein quelloffenes Identity- und Access-Management-System, das
+Keycloak ist ein quelloffenes Identitäts- und Zugriffsmanagement-System, das
 Authentifizierung und Autorisierung als eigenständigen Dienst bereitstellt.
 In der vorliegenden Anwendung übernimmt Keycloak die gesamte Verwaltung von
 Benutzeridentitäten, sodass weder im Frontend noch im Backend eine eigene
@@ -42,7 +42,7 @@ gültiges Token enthält unter anderem den sogenannten \textit{Subject Claim}
 enthält. Diese UUID wird im \texttt{UserService} über die injizierte
 \texttt{JsonWebToken}-Instanz extrahiert:
 
-\begin{lstlisting}[language=java, caption={Extraktion der Benutzer-UUID aus dem JWT im UserService}]
+\begin{lstlisting}[language=java, basicstyle=\ttfamily\small, caption={Extraktion der Benutzer-UUID aus dem JWT im UserService}]
 @Inject
 JsonWebToken jwt;
 

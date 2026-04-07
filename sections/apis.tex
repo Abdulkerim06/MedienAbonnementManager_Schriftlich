@@ -1,6 +1,6 @@
 ﻿\setauthor{AC}
 \section{Gesamtarchitektur der Anwendung}
-Die Gesamtarchitektur der Anwendung folgt einem klar getrennten Aufbau zwischen Benutzeroberfläche und serverseitiger Verarbeitung. Der Schwerpunkt meines Projektteils lag auf dem Frontend, das mit Angular als Single-Page-Application umgesetzt wurde. Das Frontend übernimmt die Darstellung der Inhalte, die Navigation zwischen den Ansichten sowie die Interaktion mit den Nutzenden. Die eigentliche Datenverarbeitung erfolgt über bereitgestellte REST-Schnittstellen, die vom Frontend angesprochen werden. Durch diese Trennung konnte die Benutzeroberfläche unabhängig von der serverseitigen Implementierung entwickelt und erweitert werden.
+Die Gesamtarchitektur der Anwendung folgt einem klar getrennten Aufbau zwischen Benutzeroberfläche und serverseitiger Verarbeitung. Der Schwerpunkt meines Projektteils lag auf dem Frontend, das mit Angular als Single-Page-Anwendung umgesetzt wurde. Das Frontend übernimmt die Darstellung der Inhalte, die Navigation zwischen den Ansichten sowie die Interaktion mit den Nutzenden. Die eigentliche Datenverarbeitung erfolgt über bereitgestellte REST-Schnittstellen, die vom Frontend angesprochen werden. Durch diese Trennung konnte die Benutzeroberfläche unabhängig von der serverseitigen Implementierung entwickelt und erweitert werden.
 
 \begin{figure}[h]
     \centering
@@ -16,7 +16,7 @@ Die Gesamtarchitektur der Anwendung folgt einem klar getrennten Aufbau zwischen 
         \multicolumn{3}{c}{} \\
         \multicolumn{3}{c}{\fbox{\parbox{0.28\textwidth}{\centering\textbf{Relationale Datenbank}\\Benutzer\\Provider\\Abonnements\\Historie}}}
     \end{tabular}
-    \caption{Graphische Gesamtarchitektur der Anwendung}
+    \caption{Gesamtarchitektur der Anwendung}
     \label{fig:system_architecture}
 \end{figure}
 
@@ -25,7 +25,7 @@ Die Kommunikation zwischen Frontend und Backend erfolgt über HTTP-basierte REST
 
 Im Projekt wurden insbesondere Services für Filmdaten, Providerdaten und die Authentifizierungsanbindung eingesetzt. Dadurch konnte die Anwendung Suchanfragen, Detailansichten und benutzerspezifische Inhalte in einer einheitlichen Struktur verarbeiten. Für das Frontend war dabei vor allem wichtig, dass externe Daten zuverlässig geladen, zwischengespeichert und in geeigneter Form in der Oberfläche dargestellt werden.
 
-Ein typischer Ablauf innerhalb der Anwendung beginnt mit einer Benutzereingabe im Frontend, etwa einer Filmsuche. Die Suchkomponente übergibt den eingegebenen Titel an einen zuständigen Angular-Service, der daraus einen HTTP-Request an das Backend erzeugt. Das Backend verarbeitet diese Anfrage, ruft bei Bedarf externe Filmdaten über die angebundenen TMDB-Schnittstellen ab, bereitet die Antwort auf und liefert die relevanten Informationen als REST-Antwort an das Frontend zurück. Dort werden die Daten wieder vom Service entgegengenommen, in ein für die Oberfläche geeignetes Format überführt und anschließend in der Ergebnisliste dargestellt. Ein vergleichbarer Ablauf wird auch bei Detailansichten verwendet: Nach Auswahl eines Films wird anhand der Film-ID eine weitere Anfrage ausgelöst, damit zusätzliche Informationen wie Beschreibung, Laufzeit, Genres und verfügbare Anbieter geladen werden können.
+Ein typischer Ablauf innerhalb der Anwendung beginnt mit einer Benutzereingabe im Frontend, etwa einer Filmsuche. Die Suchkomponente übergibt den eingegebenen Titel an einen zuständigen Angular-Service, der daraus eine HTTP-Anfrage an das Backend erzeugt. Das Backend verarbeitet diese Anfrage, ruft bei Bedarf externe Filmdaten über die angebundenen TMDB-Schnittstellen ab, bereitet die Antwort auf und liefert die relevanten Informationen als REST-Antwort an das Frontend zurück. Dort werden die Daten wieder vom Service entgegengenommen, in ein für die Oberfläche geeignetes Format überführt und anschließend in der Ergebnisliste dargestellt. Ein vergleichbarer Ablauf wird auch bei Detailansichten verwendet: Nach Auswahl eines Films wird anhand der Film-ID eine weitere Anfrage ausgelöst, damit zusätzliche Informationen wie Beschreibung, Laufzeit, Genres und verfügbare Anbieter geladen werden können.
 
 Die Trennung zwischen Komponente und Service war dabei für die Wartbarkeit besonders wichtig. Komponenten steuern Benutzerinteraktionen wie Suche, Navigation oder Auswahl eines Films, während Services die eigentliche Kommunikation mit dem Backend bündeln. Dadurch konnten Suchlogik, Detailaufrufe und Providerabfragen an zentraler Stelle verwaltet werden, ohne dieselben HTTP-Abläufe in mehreren Komponenten zu wiederholen. Gleichzeitig ließ sich die Oberfläche dadurch leichter erweitern, weil Datenquellen und Darstellung voneinander entkoppelt blieben.
 
@@ -34,10 +34,10 @@ Bei benutzerspezifischen Daten reicht ein normaler HTTP-Aufruf jedoch nicht aus.
 Das betrifft insbesondere Aufrufe zur persönlichen Abo-Verwaltung. Wenn gespeicherte Abonnements geladen, geändert oder neu gespeichert werden, sendet das Frontend die Anfrage nicht nur an den passenden Backend-Endpunkt, sondern überträgt zusätzlich das Bearer-Token im \texttt{Authorization}-Header. Erst dadurch kann das Backend die Anfrage dem aktuell angemeldeten Benutzer zuordnen und ausschließlich dessen Daten verarbeiten. Aus Frontend-Sicht war deshalb nicht nur der reine Datenabruf relevant, sondern das verlässliche Zusammenspiel aus Service-Aufruf, Token-Übergabe und anschließender Aktualisierung der Oberfläche.
 
 \setauthor{AC}
-\section{API-Integration externer Movie-Datenbanken}
+\section{API-Integration externer Filmdatenbanken}
 Ein wichtiger Bestandteil der Anwendung ist die Darstellung von Filminformationen und Streaming-Anbietern. Aus Sicht des Frontends bestand die Aufgabe darin, diese Informationen benutzerfreundlich aufzubereiten und in unterschiedlichen Ansichten darzustellen. Dazu gehören insbesondere die Filmübersicht, die Detailansicht einzelner Filme sowie die Anzeige verfügbarer Anbieter.
 
-Die Filmdaten werden über bereitgestellte Schnittstellen geladen und in Angular-Komponenten eingebunden. Für die Benutzeroberfläche war dabei entscheidend, dass Suchergebnisse übersichtlich dargestellt, Detailinformationen verständlich aufbereitet und Navigationswechsel zwischen Listen- und Detailansicht flüssig umgesetzt werden. Da die Anwendung als Single-Page-Application realisiert wurde, konnte dieser Wechsel ohne vollständigen Seitenneuaufbau erfolgen \cite{mdn_spa}. Als externe Grundlage diente dabei die Dokumentation der TMDB API, insbesondere für Authentifizierung, Filmdaten und Anbieterinformationen \cite{tmdb_getting_started,tmdb_watch_providers}.
+Die Filmdaten werden über bereitgestellte Schnittstellen geladen und in Angular-Komponenten eingebunden. Für die Benutzeroberfläche war dabei entscheidend, dass Suchergebnisse übersichtlich dargestellt, Detailinformationen verständlich aufbereitet und Navigationswechsel zwischen Listen- und Detailansicht flüssig umgesetzt werden. Da die Anwendung als Single-Page-Anwendung realisiert wurde, konnte dieser Wechsel ohne vollständigen Seitenneuaufbau erfolgen \cite{mdn_spa}. Als externe Grundlage diente dabei die Dokumentation der TMDB API, insbesondere für Authentifizierung, Filmdaten und Anbieterinformationen \cite{tmdb_getting_started,tmdb_watch_providers}.
 
 \begin{figure}[H]
     \centering
@@ -50,7 +50,7 @@ Die Filmdaten werden über bereitgestellte Schnittstellen geladen und in Angular
 \section{Sicherheits- und Datenschutzkonzept}
 Aus Frontend-Sicht spielt das Sicherheits- und Datenschutzkonzept vor allem bei der Zugriffskontrolle auf geschützte Bereiche eine Rolle. Öffentliche Inhalte der Anwendung können ohne Anmeldung aufgerufen werden, während persönliche Funktionen wie die Verwaltung eigener Streaming-Abonnements nur nach erfolgreicher Authentifizierung zugänglich sind. Für diesen Zweck wurde Keycloak in das Frontend integriert \cite{keycloak_docs,keycloak_home}.
 
-Ein wichtiger Bestandteil dieses Konzepts ist, dass personenbezogene oder benutzerspezifische Daten nicht öffentlich abrufbar sind. Das Backend stellt diese Informationen nur dann bereit, wenn bei der Anfrage ein gültiges Bearer-Token übertragen wird. Das Frontend übernimmt dabei die Aufgabe, den Authentifizierungsstatus zu verwalten und das Token bei geschützten Requests mitzuschicken. Dadurch wird sichergestellt, dass persönliche Inhalte nur autorisierten Benutzern angezeigt werden \cite{keycloak_docs}.
+Ein wichtiger Bestandteil dieses Konzepts ist, dass personenbezogene oder benutzerspezifische Daten nicht öffentlich abrufbar sind. Das Backend stellt diese Informationen nur dann bereit, wenn bei der Anfrage ein gültiges Bearer-Token übertragen wird. Das Frontend übernimmt dabei die Aufgabe, den Authentifizierungsstatus zu verwalten und das Token bei geschützten Anfragen mitzuschicken. Dadurch wird sichergestellt, dass persönliche Inhalte nur autorisierten Benutzern angezeigt werden \cite{keycloak_docs}.
 
 Die Angular-Anwendung erkennt den Authentifizierungsstatus der Nutzenden und steuert darauf basierend den Zugriff auf geschützte Routen. Dadurch wird sichergestellt, dass sensible benutzerspezifische Inhalte nicht ohne Anmeldung angezeigt werden. Gleichzeitig verbessert diese Struktur die Benutzerfreundlichkeit, da sich öffentliche und persönliche Bereiche klar voneinander trennen lassen. Die eigentliche Verwaltung von Zugangsdaten erfolgt dabei nicht im Frontend selbst, sondern über das externe Authentifizierungssystem.
 \input{./sections/datenbank}
